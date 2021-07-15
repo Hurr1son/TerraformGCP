@@ -1,0 +1,21 @@
+---
+# tasks file for nginx
+#- name: Update apt cache
+#  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install required software
+  apt: name={{ item }} state=present
+  with_items:
+         - apt-transport-https
+         - nginx
+         - git
+
+- name: Congigurating Nginx
+  file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+
+- name: Copy file
+  copy:
+    src: default
+    dest: /etc/nginx/sites-available/ 

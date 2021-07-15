@@ -1,0 +1,6 @@
+deploy.json
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+myKey.pem
+terraform.tfstate
+.terraform/
