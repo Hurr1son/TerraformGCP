@@ -9,10 +9,10 @@ resource "google_storage_bucket" "chisto_state" {
   }
 }
 
-#terraform{
-#backend "gcs"{
-#bucket = "chisto-state"
-#prefix = "terraform.tfstate"
-#credentials = "deploy.json"
-#}
-#}
+terraform{
+backend "gcs"{
+bucket = "chisto-state"
+prefix = "terraform.tfstate"
+credentials = "deploy.json"
+}
+}
