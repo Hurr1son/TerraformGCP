@@ -34,7 +34,7 @@ resource "google_compute_address" "static" {
   depends_on = [ google_compute_firewall.webg]
 }
 resource "google_compute_address" "static2" {
-  name = "${var.inst_name-prod"
+  name = "${var.inst_name}-prod"
   project = var.project
   region = var.region
   depends_on = [ google_compute_firewall.webg]
