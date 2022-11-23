@@ -1,8 +1,8 @@
 provider "google"{
     credentials = "${file("deploy.json")}"
-    project = "deploy-315515"
-    region= "us-east1"
-    zone =  "us-east1-c"
+    project = var.project
+    region= var.region
+    zone =  var.zone
 }
 
 resource "tls_private_key" "kk" {
@@ -19,24 +19,24 @@ resource "tls_private_key" "kk" {
 #}
 
 resource "google_compute_firewall" "webg"{
-    name = "webg"
+    name = var.fw_name
     network = "default"
-    source_ranges = ["0.0.0.0/0"]
+    source_ranges = var.fw_rages
     allow{
         protocol = "tcp"
         ports = ["22", "80" , "443"]
     }
 }
 resource "google_compute_address" "static" {
-  name = "vm-address-test"
-  project = "deploy-315515"
-  region = "us-east1"
+  name = "${var.inst_name}-test"
+  project = var.project
+  region= var.region
   depends_on = [ google_compute_firewall.webg]
 }
 resource "google_compute_address" "static2" {
-  name = "vm-address-prod"
-  project = "deploy-315515"
-  region = "us-east1"
+  name = "${var.inst_name-prod"
+  project = var.project
+  region = var.region
   depends_on = [ google_compute_firewall.webg]
 }
 module "instance_test" {
