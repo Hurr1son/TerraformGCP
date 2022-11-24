@@ -1,5 +1,4 @@
 provider "google"{
-    credentials = "${file("deploy.json")}"
     project = var.project
     region= var.region
     zone =  var.zone
@@ -20,7 +19,7 @@ resource "tls_private_key" "kk" {
 
 resource "google_compute_firewall" "webg"{
     name = var.fw_name
-    network = "default"
+    network = var.network_name
     source_ranges = var.fw_rages
     allow{
         protocol = "tcp"
